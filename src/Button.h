@@ -23,6 +23,7 @@ class Button {
     uint8_t pin;
     bool pullup;
     bool flag;
+    bool longFlag;
 
     Callback pressCallback;
     Callback longCallback;

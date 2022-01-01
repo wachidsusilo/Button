@@ -55,12 +55,15 @@ void Button::pollEvent() {
             counter = millis();
             if (pressCallback) pressCallback();
         } else {
-            if (millis() - counter < 700) return;
-            if (longCallback) longCallback();
+            if (!longFlag) {
+                if (millis() - counter < 700) return;
+                if (longCallback) longCallback();
+            }
         }
     } else {
         if (flag) {
             flag = false;
+            longFlag = false;
             if (releaseCallback) releaseCallback();
         }
     }
