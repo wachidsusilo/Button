@@ -56,8 +56,8 @@ void Button::pollEvent() {
             if (pressCallback) pressCallback();
         } else {
             if (!longFlag) {
-                longFlag = true;
                 if (millis() - counter < 700) return;
+                longFlag = true;
                 if (longCallback) longCallback();
             }
         }
