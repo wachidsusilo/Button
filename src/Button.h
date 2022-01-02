@@ -1,12 +1,20 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
+#if defined(ESP32) || defined(ESP8266)
+#include <functional>
+#endif
+
 #include "Arduino.h"
 #include "Timer.h"
 
 class Button {
-  public:
-    using Callback = void(*)();
+   public:
+#if defined(ESP32) || defined(ESP8266)
+    using Callback = std::function<void()>;
+#else
+    using Callback = void (*)();
+#endif
     Button();
     Button(uint8_t pin);
     ~Button();
@@ -17,7 +25,7 @@ class Button {
     void onRelease(Callback callback);
     void pollEvent();
 
-  private:
+   private:
     uint32_t id;
     uint32_t counter;
     uint8_t pin;

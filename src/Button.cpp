@@ -14,7 +14,6 @@ Button::Button(uint8_t pin) : Button() {
 Button::~Button() {
     uid = id;
     buttons.removeIf([](Button* b) -> bool { return b->id == uid; });
-    Serial.println("Destroyed");
 }
 
 void Button::begin(bool pullup) {
